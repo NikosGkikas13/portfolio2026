@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Nikos Gkikas — Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @page {
+        size: A4;
+        margin: 14mm 16mm;
+      }
+
+      :root {
+        --navy: #0b1e47;
+        --blue: #1857c6;
+        --fg-1: #18181b;
+        --fg-2: #3f3f46;
+        --fg-3: #71717a;
+        --fg-4: #a1a1aa;
+        --border-1: #e4e4e7;
+        --border-2: #f4f4f5;
+        --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+        --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-sans);
+        color: var(--fg-1);
+        background: #fff;
+        font-size: 10pt;
+        line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--fg-1);
+        text-decoration: none;
+      }
+
+      /* ============ Header ============ */
+      header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 24px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--border-1);
+        margin-bottom: 18px;
+      }
+
+      header h1 {
+        font-size: 32pt;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        line-height: 1;
+        margin: 0;
+        color: var(--fg-1);
+      }
+
+      header h1 .dot {
+        color: var(--blue);
+      }
+
+      header .role {
+        margin-top: 8px;
+        font-family: var(--font-mono);
+        font-size: 9.5pt;
+        color: var(--fg-2);
+        letter-spacing: 0.01em;
+      }
+
+      header .role .sep {
+        color: var(--fg-4);
+        margin: 0 8px;
+      }
+
+      header .contact {
+        text-align: right;
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        color: var(--fg-2);
+        line-height: 1.7;
+      }
+
+      header .contact a:hover {
+        color: var(--blue);
+      }
+
+      header .contact .label {
+        color: var(--fg-4);
+        margin-right: 6px;
+      }
+
+      /* ============ Sections ============ */
+      section {
+        margin-top: 18px;
+      }
+
+      h2.section {
+        font-family: var(--font-mono);
+        font-size: 9pt;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--fg-3);
+        margin: 0 0 12px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--border-2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2.section::before {
+        content: "";
+        display: inline-block;
+        width: 14px;
+        height: 1px;
+        background: var(--fg-4);
+      }
+
+      /* ============ Summary ============ */
+      .summary p {
+        margin: 0;
+        font-size: 10.5pt;
+        line-height: 1.55;
+        color: var(--fg-2);
+      }
+
+      .summary .accent {
+        color: var(--blue);
+        font-weight: 500;
+      }
+
+      /* ============ Experience ============ */
+      .job {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 0 18px;
+        padding: 10px 0;
+        page-break-inside: avoid;
+      }
+
+      .job + .job {
+        border-top: 1px solid var(--border-2);
+      }
+
+      .job .years {
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        color: var(--fg-3);
+        letter-spacing: 0.02em;
+        padding-top: 2px;
+      }
+
+      .job .company {
+        font-size: 11pt;
+        font-weight: 600;
+        color: var(--fg-1);
+        letter-spacing: -0.01em;
+      }
+
+      .job .title {
+        font-family: var(--font-mono);
+        font-size: 9pt;
+        color: var(--fg-2);
+        margin-top: 2px;
+        letter-spacing: 0.01em;
+      }
+
+      .job ul {
+        margin: 8px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .job ul li {
+        font-size: 10pt;
+        line-height: 1.45;
+        color: var(--fg-2);
+        padding-left: 14px;
+        position: relative;
+        margin-top: 4px;
+      }
+
+      .job ul li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--fg-4);
+        font-family: var(--font-mono);
+      }
+
+      /* ============ Skills ============ */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 6px 18px;
+      }
+
+      .skills-grid dt {
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--fg-3);
+        padding-top: 2px;
+      }
+
+      .skills-grid dd {
+        margin: 0;
+        font-size: 10pt;
+        color: var(--fg-1);
+      }
+
+      .skills-grid dd .muted {
+        color: var(--fg-3);
+      }
+
+      /* ============ Education ============ */
+      .edu {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 18px;
+        align-items: baseline;
+      }
+
+      .edu .when {
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        color: var(--fg-3);
+      }
+
+      .edu .what {
+        font-size: 10.5pt;
+        color: var(--fg-1);
+      }
+
+      .edu .what small {
+        display: block;
+        font-size: 9pt;
+        color: var(--fg-3);
+        margin-top: 2px;
+        font-family: var(--font-mono);
+      }
+
+      /* ============ Footer ============ */
+      footer {
+        margin-top: 22px;
+        padding-top: 10px;
+        border-top: 1px solid var(--border-2);
+        font-family: var(--font-mono);
+        font-size: 8pt;
+        color: var(--fg-4);
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Nikos Gkikas<span class="dot">.</span></h1>
+        <div class="role">
+          software engineer
+          <span class="sep">·</span>
+          Marathon, Greece
+          <span class="sep">·</span>
+          JPMorganChase
+        </div>
+      </div>
+      <div class="contact">
+        <div>
+          <span class="label">email</span>
+          <a href="mailto:ngkdev93@gmail.com">ngkdev93@gmail.com</a>
+        </div>
+        <div>
+          <span class="label">phone</span>+30 698 476 4168
+        </div>
+        <div>
+          <span class="label">linkedin</span>
+          <a href="https://www.linkedin.com/in/nikos-gkikas-7b250b1b0">linkedin.com/in/nikos-gkikas-7b250b1b0</a>
+        </div>
+        <div>
+          <span class="label">github</span>
+          <a href="https://github.com/NikosGkikas13">github.com/NikosGkikas13</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="summary">
+      <h2 class="section">Summary</h2>
+      <p>
+        Software engineer with experience building
+        <span class="accent">high-performance frontend and full-stack applications</span>
+        across fintech, trading, and web platforms. Specialized in React, TypeScript, and real-time
+        systems, with a strong focus on scalable UI architecture, trading workflows, and
+        low-latency data-driven applications. Passionate about
+        <span class="accent">AI-driven engineering</span>, workflow automation, and developer
+        productivity — with hands-on experience building and integrating AI agents, reusable
+        skills, and intelligent tooling into modern software platforms.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section">Experience</h2>
+
+      <div class="job">
+        <div class="years">2025 — now</div>
+        <div>
+          <div class="company">JPMorganChase</div>
+          <div class="title">Software Engineer II · Greece, Hybrid</div>
+          <ul>
+            <li>
+              Built highly interactive React + TypeScript apps for traders to inspect ETF baskets,
+              edit constituents, monitor live pricing and risk, validate trade inputs, and submit
+              baskets into pricing &amp; valuation engines.
+            </li>
+            <li>
+              Shipped composition editors, pricing workflows, basket management tools, and charting
+              features powering real-time analytics and trading decisions.
+            </li>
+            <li>
+              Partnered with backend engineers to define and integrate the services behind
+              low-latency market data, pricing, and risk calculations.
+            </li>
+            <li>
+              Built desk-specific UI extensions, persisted user-state management, validation
+              frameworks, and comprehensive automated test coverage.
+            </li>
+            <li>
+              Drove AI-driven engineering initiatives across the equities ETF business — AI agents,
+              reusable skills, and workflow automation to accelerate delivery.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="years">2023 — 2025</div>
+        <div>
+          <div class="company">OKTO</div>
+          <div class="title">Front-end Developer</div>
+          <ul>
+            <li>
+              Built and maintained secure, high-performance web applications in React + TypeScript,
+              with a focus on reusable, responsive UI components.
+            </li>
+            <li>
+              Partnered with backend, product, and design in an Agile setting to ship features that
+              move business metrics.
+            </li>
+            <li>
+              Managed app state with Redux and Context API, keeping behavior predictable across
+              pages.
+            </li>
+            <li>
+              Improved frontend performance with lazy loading and memoization — cut initial load
+              time and lifted responsiveness.
+            </li>
+            <li>
+              Mentored on React + TS best practices by senior engineers; lifted code quality and
+              team velocity.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="years">2020 — 2023</div>
+        <div>
+          <div class="company">Sportion</div>
+          <div class="title">Junior Web Developer</div>
+          <ul>
+            <li>Built fully responsive pages from scratch, in close collaboration with the design team.</li>
+            <li>Maintained, improved, and revamped existing landing pages.</li>
+            <li>Designed and shipped mobile-first features.</li>
+            <li>Browser testing and debugging across the matrix; fetched and handled data from APIs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="years">2019 — 2020</div>
+        <div>
+          <div class="company">Freelance</div>
+          <div class="title">Junior Web Developer</div>
+          <ul>
+            <li>Took on small freelance projects while learning the craft. The work that started it.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Skills</h2>
+      <dl class="skills-grid">
+        <dt>Languages</dt>
+        <dd>JavaScript, TypeScript, HTML5, CSS3, <span class="muted">PHP, C</span></dd>
+
+        <dt>Frameworks</dt>
+        <dd>React, Redux, Context API, Next.js, <span class="muted">jQuery, WordPress</span></dd>
+
+        <dt>Practices</dt>
+        <dd>
+          Responsive design, performance optimization, REST/GraphQL integration, automated testing,
+          state management
+        </dd>
+
+        <dt>AI tooling</dt>
+        <dd>AI agents, custom skills, workflow automation, developer productivity tooling</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2 class="section">Education</h2>
+      <div class="edu">
+        <div class="when">B.Eng.</div>
+        <div class="what">
+          Informatics Engineering
+          <small>Bachelor's degree — Greece</small>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Nikos Gkikas · Software Engineer</span>
+      <span>nikos-gkikas.dev</span>
+    </footer>
+  </body>
+</html>
