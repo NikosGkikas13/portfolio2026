@@ -21,7 +21,7 @@ const EXPERIENCE = [
   {
     years: "2025 — now",
     company: "JPMorganChase",
-    title: "Software Engineer II · Greece, hybrid",
+    title: "Software Engineer II · Greece",
     bullets: [
       "Built highly interactive React + TypeScript apps for traders to inspect ETF baskets, edit constituents, monitor live pricing and risk, validate trade inputs, and submit baskets into pricing & valuation engines.",
       "Shipped composition editors, pricing workflows, basket management tools, and charting features powering real-time analytics and trading decisions.",
