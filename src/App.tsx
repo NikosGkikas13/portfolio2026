@@ -421,8 +421,51 @@ function Education() {
   )
 }
 
+type FormStatus = 'idle' | 'sending' | 'sent' | 'error'
+
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined
+
 function Contact() {
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<FormStatus>('idle')
+  const [error, setError] = useState<string | null>(null)
+
+  const submit = async (form: HTMLFormElement) => {
+    if (!FORMSPREE_ENDPOINT) {
+      setError(
+        'Form endpoint not configured. Set VITE_FORMSPREE_ENDPOINT in your .env file.',
+      )
+      setStatus('error')
+      return
+    }
+
+    setStatus('sending')
+    setError(null)
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      })
+      if (!res.ok) {
+        const body = await res.json().catch(() => null)
+        throw new Error(body?.errors?.[0]?.message ?? `Request failed (${res.status})`)
+      }
+      setStatus('sent')
+      form.reset()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong.')
+      setStatus('error')
+    }
+  }
+
+  const buttonLabel =
+    status === 'sending'
+      ? 'sending…'
+      : status === 'sent'
+        ? 'sent →'
+        : 'Send message →'
+
   return (
     <section id="contact">
       <div className="eyebrow">08 / contact</div>
@@ -436,24 +479,38 @@ function Contact() {
           className="form"
           onSubmit={(e) => {
             e.preventDefault()
-            setSent(true)
+            void submit(e.currentTarget)
           }}
         >
           <div className="field">
             <label htmlFor="n">Name</label>
-            <input id="n" type="text" required />
+            <input id="n" name="name" type="text" required disabled={status === 'sending'} />
           </div>
           <div className="field">
             <label htmlFor="e">Email</label>
-            <input id="e" type="email" required />
+            <input id="e" name="email" type="email" required disabled={status === 'sending'} />
           </div>
           <div className="field">
             <label htmlFor="m">Message</label>
-            <textarea id="m" required />
+            <textarea id="m" name="message" required disabled={status === 'sending'} />
           </div>
-          <button className="btn-send" type="submit">
-            {sent ? 'sent →' : 'Send message →'}
+          <button
+            className="btn-send"
+            type="submit"
+            disabled={status === 'sending' || status === 'sent'}
+          >
+            {buttonLabel}
           </button>
+          {status === 'error' && error && (
+            <div className="form-error" role="alert">
+              {error}
+            </div>
+          )}
+          {status === 'sent' && (
+            <div className="form-success" role="status">
+              Thanks — I'll get back to you soon.
+            </div>
+          )}
         </form>
 
         <dl className="aside">

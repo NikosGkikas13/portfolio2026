@@ -822,6 +822,32 @@ p.body strong {
 .dark .btn-send:hover {
   background: #fff;
 }
+.btn-send:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.form-error,
+.form-success {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  margin-top: 4px;
+}
+.form-error {
+  color: #b91c1c;
+  background: color-mix(in oklch, #dc2626 8%, transparent);
+  border: 1px solid color-mix(in oklch, #dc2626 18%, transparent);
+}
+.dark .form-error {
+  color: #f87171;
+}
+.form-success {
+  color: var(--status-delivered-fg);
+  background: var(--status-delivered-tint);
+  border: 1px solid color-mix(in oklch, var(--status-delivered) 25%, transparent);
+}
 
 /* ============================================================
    Footer
