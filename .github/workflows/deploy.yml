@@ -32,19 +32,15 @@ jobs:
           VITE_FORMSPREE_ENDPOINT: ${{ secrets.VITE_FORMSPREE_ENDPOINT }}
         run: npm run build
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftps
-          local-dir: ./dist/
-          server-dir: ./public_html/
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.htaccess
+      - name: Deploy via SSH (rsync)
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DEST: u690866451@92.113.19.64:/home/u690866451/domains/nikosgkikasdev.com/public_html/
+        run: |
+          install -m 700 -d ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          echo "[92.113.19.64]:65002 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBUqhTob/DvwYGUUY+oNcNkmWjt7gB7TFC0z1Zdp71m0" > ~/.ssh/known_hosts
+          SSH="ssh -p 65002 -i ~/.ssh/deploy_key -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o StrictHostKeyChecking=yes"
+          # assets are content-hashed, so mirror that folder exactly; everything else only adds/overwrites
+          rsync -az --delete -e "$SSH" dist/assets/ "$DEST"assets/
+          rsync -az --exclude assets -e "$SSH" dist/ "$DEST"
