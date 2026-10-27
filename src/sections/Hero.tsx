@@ -13,10 +13,6 @@ export function Hero() {
         width={92}
         height={92}
       />
-      <div className="status">
-        <span className="dot dot--delivered" />
-        available for new work — Q3 2026
-      </div>
       <h1>
         <span className="first">Nikos</span>
         <br />

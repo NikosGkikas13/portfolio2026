@@ -20,9 +20,9 @@ export function Work() {
               <h3>Odyhook</h3>
               <div className="url">odyhook.dev&nbsp;→</div>
             </div>
-            <span className="pill pill--in-flight">
-              <span className="dot dot--in-flight" />
-              in_flight
+            <span className="pill pill--delivered">
+              <span className="dot dot--delivered" />
+              shipped
             </span>
           </div>
           <p>
@@ -35,6 +35,38 @@ export function Work() {
           <div className="project-meta">
             <span>
               stack <b>Next.js · Prisma · Postgres · QuickJS</b>
+            </span>
+            <span>
+              status <b>live</b>
+            </span>
+          </div>
+        </a>
+
+        <a
+          className="project"
+          href="https://nitpilot.dev/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div className="project-head">
+            <div className="title-wrap">
+              <h3>Nitpilot</h3>
+              <div className="url">nitpilot.dev&nbsp;→</div>
+            </div>
+            <span className="pill pill--in-flight">
+              <span className="dot dot--in-flight" />
+              in_flight
+            </span>
+          </div>
+          <p>
+            Your own AI agent reviews your teammates' pull requests, and theirs
+            reviews yours. Runs Claude Code on your own machine, posts inline
+            reviews in your name, and when both sides are on it the agents work
+            the PR out between them — pinging a human only for the decisions.
+          </p>
+          <div className="project-meta">
+            <span>
+              stack <b>React · Hono · Prisma · Postgres · WebSockets</b>
             </span>
             <span>
               status <b>under construction</b>
