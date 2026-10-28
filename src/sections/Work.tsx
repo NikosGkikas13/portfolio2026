@@ -53,9 +53,9 @@ export function Work() {
               <h3>Nitpilot</h3>
               <div className="url">nitpilot.dev&nbsp;→</div>
             </div>
-            <span className="pill pill--in-flight">
-              <span className="dot dot--in-flight" />
-              in_flight
+            <span className="pill pill--delivered">
+              <span className="dot dot--delivered" />
+              shipped
             </span>
           </div>
           <p>
@@ -69,7 +69,7 @@ export function Work() {
               stack <b>React · Hono · Prisma · Postgres · WebSockets</b>
             </span>
             <span>
-              status <b>under construction</b>
+              status <b>live</b>
             </span>
           </div>
         </a>
