@@ -4,8 +4,8 @@ export function Work() {
       <div className="eyebrow">03 / work</div>
       <h2 className="section-title">Side projects.</h2>
       <p className="body">
-        Things I'm making outside the day job. Most of them are works in
-        progress — I'll point you at them when they're ready.
+        Things I've built outside the day job — made for myself, shipped, and
+        in use.
       </p>
 
       <div className="project-list">
@@ -76,7 +76,7 @@ export function Work() {
       </div>
 
       <div className="project-empty">
-        More projects landing here soon — currently shipping privately.
+        More on the way — I'm always building something on the side.
       </div>
     </section>
   );
