@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local tooling: design-tool art sources and mocks, Claude settings
+.impeccable/
+.claude/

@@ -1,21 +1,45 @@
 import { SKILLS } from "../data/content";
 
+const PRIMARY = SKILLS.filter((s) => s.level === "primary");
+const FAMILIAR = SKILLS.filter((s) => s.level === "familiar");
+
 export function Skills() {
   return (
-    <section id="skills">
-      <div className="eyebrow">05 / skills</div>
-      <h2 className="section-title">Tech stack.</h2>
-      <p className="body" style={{ marginBottom: 28 }}>
-        A working knowledge of the front-end stack, with depth where I've spent
-        the most time.
-      </p>
-      <div className="skill-grid">
-        {SKILLS.map((s) => (
-          <div className="skill" key={s.name}>
-            <span className="name">{s.name}</span>
-            <span className="level">{s.level}</span>
-          </div>
-        ))}
+    <section id="skills" className="split">
+      <div className="split-head">
+        <h2 className="section-title">Tech stack.</h2>
+        <p className="section-sub">
+          The stack I build with at work and on the side, with depth where
+          I've spent the most time.
+        </p>
+      </div>
+      <div className="stack">
+        <div className="stack-group">
+          <h3 className="label">Primary</h3>
+          <ul className="tags tags--lg">
+            {PRIMARY.map((s) => (
+              <li key={s.name} className="tag tag--strong">
+                {s.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="stack-group">
+          <h3 className="label">Familiar</h3>
+          <ul className="tags">
+            {FAMILIAR.map((s) => (
+              <li key={s.name} className="tag">
+                {s.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="stack-group">
+          <h3 className="label">Education</h3>
+          <p className="edu">
+            <strong>B.Eng. Informatics Engineering</strong> · Bachelor's degree — Greece
+          </p>
+        </div>
       </div>
     </section>
   );

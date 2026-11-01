@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ArrowUpRight } from "../components/Icons";
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
 
@@ -43,22 +44,51 @@ export function Contact() {
   };
 
   const buttonLabel =
-    status === "sending"
-      ? "sending…"
-      : status === "sent"
-        ? "sent →"
-        : "Send message →";
+    status === "sending" ? "Sending…" : status === "sent" ? "Sent" : "Send message";
 
   return (
-    <section id="contact">
-      <div className="eyebrow">08 / contact</div>
-      <h2 className="section-title">Let's talk.</h2>
-      <p className="body" style={{ marginBottom: 32 }}>
-        Have a project, a hire, or just want to compare notes on AI tooling? The
-        form goes straight to my inbox. Or pick the channel you prefer on the
-        right.
-      </p>
-      <div className="contact-grid">
+    <section id="contact" className="contact">
+      <div className="contact-panel">
+        <div className="contact-intro">
+          <h2 className="section-title">Let's talk.</h2>
+          <p className="section-sub">
+            Have a project, a hire, or just want to compare notes on AI tooling?
+            The form goes straight to my inbox. Or pick the channel you prefer.
+          </p>
+          <dl className="channels">
+            <div>
+              <dt>Email</dt>
+              <dd>
+                <a href="mailto:ngkdev93@gmail.com">ngkdev93@gmail.com</a>
+              </dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <dd>
+                <a href="tel:+306984764168">+30 698 476 4168</a>
+              </dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd>Marathon, Greece · GMT+2</dd>
+            </div>
+            <div>
+              <dt>Elsewhere</dt>
+              <dd className="channel-links">
+                <a href="https://www.linkedin.com/in/nikos-gkikas-7b250b1b0" target="_blank" rel="noreferrer">
+                  LinkedIn <ArrowUpRight />
+                </a>
+                <a href="https://github.com/NikosGkikas13" target="_blank" rel="noreferrer">
+                  GitHub <ArrowUpRight />
+                </a>
+                <a href="https://www.instagram.com/nick_klg" target="_blank" rel="noreferrer">
+                  Instagram <ArrowUpRight />
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
         <form
           className="form"
           onSubmit={(e) => {
@@ -68,93 +98,32 @@ export function Contact() {
         >
           <div className="field">
             <label htmlFor="n">Name</label>
-            <input
-              id="n"
-              name="name"
-              type="text"
-              required
-              disabled={status === "sending"}
-            />
+            <input id="n" name="name" type="text" autoComplete="name" placeholder="Your name" required disabled={status === "sending"} />
           </div>
           <div className="field">
             <label htmlFor="e">Email</label>
-            <input
-              id="e"
-              name="email"
-              type="email"
-              required
-              disabled={status === "sending"}
-            />
+            <input id="e" name="email" type="email" autoComplete="email" placeholder="you@company.com" required disabled={status === "sending"} />
           </div>
           <div className="field">
             <label htmlFor="m">Message</label>
-            <textarea
-              id="m"
-              name="message"
-              required
-              disabled={status === "sending"}
-            />
+            <textarea id="m" name="message" rows={5} placeholder="What are you working on?" required disabled={status === "sending"} />
           </div>
-          <button
-            className="btn-send"
-            type="submit"
-            disabled={status === "sending" || status === "sent"}
-          >
-            {buttonLabel}
-          </button>
-          {status === "error" && error && (
-            <div className="form-error" role="alert">
-              {error}
-            </div>
-          )}
-          {status === "sent" && (
-            <div className="form-success" role="status">
-              Thanks — I'll get back to you soon.
-            </div>
-          )}
+          <div className="form-foot">
+            <button className="btn btn--primary" type="submit" disabled={status === "sending" || status === "sent"}>
+              {buttonLabel}
+            </button>
+            {status === "error" && error && (
+              <p className="form-msg form-msg--error" role="alert">
+                {error}
+              </p>
+            )}
+            {status === "sent" && (
+              <p className="form-msg" role="status">
+                Thanks — I'll get back to you soon.
+              </p>
+            )}
+          </div>
         </form>
-
-        <dl className="aside">
-          <dt>Email</dt>
-          <dd>
-            <a href="mailto:ngkdev93@gmail.com">ngkdev93@gmail.com</a>
-          </dd>
-
-          <dt>Phone</dt>
-          <dd>+30 698 476 4168</dd>
-
-          <dt>Location</dt>
-          <dd>Marathon, Greece · GMT+2</dd>
-
-          <dt>Elsewhere</dt>
-          <dd>
-            <a
-              href="https://www.linkedin.com/in/nikos-gkikas-7b250b1b0"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn →
-            </a>
-          </dd>
-          <dd>
-            <a
-              href="https://github.com/NikosGkikas13"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub →
-            </a>
-          </dd>
-          <dd>
-            <a
-              href="https://www.instagram.com/nick_klg"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Instagram →
-            </a>
-          </dd>
-        </dl>
       </div>
     </section>
   );

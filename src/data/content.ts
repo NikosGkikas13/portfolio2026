@@ -1,9 +1,32 @@
 export const NAV_LINKS = [
-  { num: "01", label: "about", href: "#about" },
-  { num: "02", label: "now", href: "#now" },
-  { num: "03", label: "work", href: "#work" },
-  { num: "04", label: "experience", href: "#experience" },
-  { num: "05", label: "contact", href: "#contact" },
+  { label: "about", href: "#about" },
+  { label: "work", href: "#work" },
+  { label: "experience", href: "#experience" },
+  { label: "contact", href: "#contact" },
+] as const;
+
+export const PROJECTS = [
+  {
+    name: "Odyhook",
+    domain: "odyhook.dev",
+    href: "https://odyhook.dev/",
+    body: "A smart webhook proxy. Ingests events from upstream providers, logs every payload forever, fans out to multiple destinations with automatic retries, and lets you replay any event with one click. AI-compiled filters and JS transforms run in a QuickJS sandbox before forwarding.",
+    stack: "Next.js · Prisma · Postgres · QuickJS",
+  },
+  {
+    name: "Nitpilot",
+    domain: "nitpilot.dev",
+    href: "https://nitpilot.dev/",
+    body: "Your own AI agent reviews your teammates' pull requests, and theirs reviews yours. Runs Claude Code on your own machine, posts inline reviews in your name, and when both sides are on it the agents work the PR out between them — pinging a human only for the decisions.",
+    stack: "React · Hono · Prisma · Postgres · WebSockets",
+  },
+] as const;
+
+export const ROLES = [
+  "fast trading interfaces",
+  "real-time data tools",
+  "AI agents & custom skills",
+  "side projects that ship",
 ] as const;
 
 export const FOCUS_CHIPS = [
@@ -62,16 +85,17 @@ export const EXPERIENCE = [
 ] as const;
 
 export const SKILLS = [
-  { name: "JavaScript", level: "primary" },
   { name: "TypeScript", level: "primary" },
   { name: "React", level: "primary" },
-  { name: "Redux · Context", level: "primary" },
-  { name: "HTML5", level: "primary" },
-  { name: "CSS3 · responsive", level: "primary" },
-  { name: "jQuery", level: "familiar" },
+  { name: "Next.js", level: "primary" },
+  { name: "Node · Hono", level: "primary" },
+  { name: "Postgres · Prisma", level: "primary" },
+  { name: "WebSockets", level: "primary" },
+  { name: "AI agents · Claude Code", level: "primary" },
+  { name: "Redux · Context", level: "familiar" },
+  { name: "HTML · CSS", level: "familiar" },
   { name: "PHP", level: "familiar" },
   { name: "WordPress", level: "familiar" },
-  { name: "C", level: "familiar" },
 ] as const;
 
 export const SERVICES = [
@@ -105,12 +129,4 @@ export const SERVICES = [
     title: "Workflow & automation",
     body: "Where my evenings go right now: AI agents, custom skills, and tooling that takes the rote work off the team's plate.",
   },
-] as const;
-
-export const TICKER_WORDS = [
-  "ai agents",
-  "custom skills",
-  "workflow automation",
-  "odyhook.dev",
-  "a quiet evening",
 ] as const;

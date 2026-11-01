@@ -4,7 +4,7 @@ export function Footer() {
       <div className="inner">
         <div>© 2026 Nikos Gkikas · built with care</div>
         <div>
-          last updated <span>May 2026</span>
+          Last updated <span className="mono">November 2026</span>
         </div>
       </div>
     </footer>

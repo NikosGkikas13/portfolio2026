@@ -1,56 +1,64 @@
 import avatarImg from "../assets/avatar.jpeg";
-import { useTypingTicker } from "../hooks/useTypingTicker";
-import { TICKER_WORDS } from "../data/content";
+import { ROLES } from "../data/content";
+import { ArrowUpRight } from "../components/Icons";
+import { RollingWord } from "../components/Motion";
 
 export function Hero() {
-  const typed = useTypingTicker(TICKER_WORDS);
   return (
-    <section className="hero">
-      <img
-        className="avatar"
-        src={avatarImg}
-        alt="Nikos Gkikas"
-        width={92}
-        height={92}
-      />
-      <h1>
-        <span className="first">Nikos</span>
-        <br />
-        <span className="last">
-          Gkikas<span className="dot-char">.</span>
-        </span>
-      </h1>
-      <div className="role">
-        software engineer
-        <span className="sep">·</span>
-        Marathon, Greece
-        <span className="sep">·</span>
-        JPMorganChase
+    <section className="hero" aria-labelledby="hero-title">
+      <div className="hero-copy">
+        <h1 id="hero-title" className="mask">
+          <span className="mask-inner">Hi, I'm Nikos.</span>
+        </h1>
+        <p className="hero-roll">
+          I build <RollingWord words={ROLES} />
+        </p>
+        <p className="hero-sub">
+          Software engineer at JPMorganChase, making React and TypeScript apps
+          that stream live pricing and risk to traders — and AI agents that
+          speed up how software gets built.
+        </p>
+        <div className="hero-actions">
+          <a className="btn btn--primary" href="#contact">
+            Get in touch
+          </a>
+          <a className="btn" href="/resume.pdf" target="_blank" rel="noreferrer">
+            Résumé <ArrowUpRight />
+          </a>
+          <span className="hero-socials">
+            <a className="link" href="https://github.com/NikosGkikas13" target="_blank" rel="noreferrer">
+              GitHub <ArrowUpRight />
+            </a>
+            <a className="link" href="https://www.linkedin.com/in/nikos-gkikas-7b250b1b0" target="_blank" rel="noreferrer">
+              LinkedIn <ArrowUpRight />
+            </a>
+          </span>
+        </div>
       </div>
 
-      <p className="lede">
-        Software engineer with experience building{" "}
-        <span className="accent">
-          high-performance frontend and full-stack applications
-        </span>{" "}
-        across fintech, trading, and web platforms. Specialized in React,
-        TypeScript, and real-time systems, with a strong focus on scalable UI
-        architecture, trading workflows, and low-latency data-driven
-        applications.
-      </p>
-      <p className="lede">
-        Passionate about <span className="accent">AI-driven engineering</span>,
-        workflow automation, and developer productivity — with hands-on
-        experience building and integrating AI agents, reusable skills, and
-        intelligent tooling into modern software platforms.
-      </p>
-
-      <div className="ticker">
-        <span className="prompt">~/</span>
-        <span>currently building&nbsp;→&nbsp;</span>
-        <span className="typed">{typed}</span>
-        <span className="cursor" />
-      </div>
+      <aside className="hero-card" aria-label="At a glance">
+        <img className="hero-avatar" src={avatarImg} alt="Nikos Gkikas" width={96} height={96} />
+        <dl className="glance">
+          <div>
+            <dt>Currently</dt>
+            <dd>Software Engineer II, JPMorganChase</dd>
+          </div>
+          <div>
+            <dt>Shipped</dt>
+            <dd>
+              <a href="#work">Nitpilot · Odyhook</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>Marathon, Greece · GMT+2</dd>
+          </div>
+          <div>
+            <dt>Into</dt>
+            <dd>AI agents, real-time UIs</dd>
+          </div>
+        </dl>
+      </aside>
     </section>
   );
 }
