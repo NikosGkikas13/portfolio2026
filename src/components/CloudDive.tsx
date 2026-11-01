@@ -29,11 +29,12 @@ function Art({ name, widths = WIDE, sizes = COVER, className, priority }: {
   );
 }
 
-// Lightning limits: at most two flashes per strike, never closer than this, strikes seconds apart.
-// That keeps it under 3 flashes in any one second (WCAG 2.3.1).
+// Any two flashes are at least MIN_GAP apart, so never more than 3 in any one second (WCAG 2.3.1),
+// even when someone scrolls back and forth across the quote.
 const MIN_GAP = 350;
 const FLASH_MS = 110;
 const STORM = [0.52, 0.86];
+const QUOTE = [0.58, 0.8]; // scrolling into this range strikes the quote on; leaving it strikes it off
 
 const reducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -54,6 +55,8 @@ export function CloudDive() {
     const root = document.documentElement;
     let raf = 0;
     let stormy = false;
+    let showing = false;
+    let lastFlash = -Infinity;
     let strikeTimer = 0;
     const timers = new Set<number>();
     const later = (fn: () => void, ms: number) => {
@@ -66,7 +69,9 @@ export function CloudDive() {
     };
 
     const flash = () => {
-      if (!stormy || document.hidden) return;
+      const now = performance.now();
+      if (document.hidden || now - lastFlash < MIN_GAP) return;
+      lastFlash = now;
       st.style.setProperty("--bolt-x", `${35 + Math.random() * 35}%`);
       st.style.setProperty("--bolt-flip", Math.random() < 0.5 ? "-1" : "1");
       st.dataset.flash = "";
@@ -76,10 +81,12 @@ export function CloudDive() {
       strikeTimer = later(() => {
         strikeTimer = 0;
         if (!stormy) return;
-        // Each strike swaps the quote: one bolt throws it on screen, the next takes it away.
-        if (!document.hidden) st.toggleAttribute("data-lit");
-        flash();
-        if (Math.random() < 0.5) later(flash, MIN_GAP + Math.random() * 250);
+        // Background storm lightning. It holds off while the quote is up, so the only bolts
+        // the quote sees are the ones that bring it in and take it away.
+        if (!showing) {
+          flash();
+          if (Math.random() < 0.5) later(() => stormy && !showing && flash(), MIN_GAP + Math.random() * 250);
+        }
         schedule(2500 + Math.random() * 3500);
       }, delay);
     };
@@ -101,6 +108,17 @@ export function CloudDive() {
         clearTimeout(strikeTimer);
         timers.delete(strikeTimer);
         strikeTimer = 0;
+      }
+
+      // Scroll into the quote's range: a bolt throws it on screen. Scroll out (either way): another bolt takes it off.
+      const inQuote = p >= QUOTE[0] && p < QUOTE[1];
+      if (inQuote !== showing) {
+        showing = inQuote;
+        // Wait out the flash gap if needed, so the text always changes together with a bolt.
+        later(() => {
+          st.toggleAttribute("data-lit", showing);
+          flash();
+        }, Math.max(0, lastFlash + MIN_GAP - performance.now()));
       }
     };
     const onScroll = () => {
