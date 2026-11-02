@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
+import { flushSync } from "react-dom";
 
 export type Theme = "light" | "dark";
 
@@ -14,13 +15,20 @@ export function useTheme() {
       : "light";
   });
 
-  useEffect(() => {
+  // Layout effect so the class lands inside flushSync, before the view transition snapshots the new theme.
+  useLayoutEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     window.localStorage.setItem(THEME_KEY, theme);
   }, [theme]);
 
-  return [
-    theme,
-    () => setTheme((t) => (t === "dark" ? "light" : "dark")),
-  ] as const;
+  const toggle = () => {
+    const flip = () => flushSync(() => setTheme((t) => (t === "dark" ? "light" : "dark")));
+    if (!document.startViewTransition || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      flip();
+      return;
+    }
+    document.startViewTransition(flip);
+  };
+
+  return [theme, toggle] as const;
 }

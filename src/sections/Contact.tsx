@@ -113,12 +113,12 @@ export function Contact() {
               {buttonLabel}
             </button>
             {status === "error" && error && (
-              <p className="form-msg form-msg--error" role="alert">
+              <p className="form-msg form-msg--error step-in" role="alert">
                 {error}
               </p>
             )}
             {status === "sent" && (
-              <p className="form-msg" role="status">
+              <p className="form-msg step-in" role="status">
                 Thanks — I'll get back to you soon.
               </p>
             )}
