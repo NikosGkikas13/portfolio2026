@@ -1,5 +1,6 @@
 export const NAV_LINKS = [
   { label: "about", href: "#about" },
+  { label: "stack", href: "#skills" },
   { label: "work", href: "#work" },
   { label: "experience", href: "#experience" },
   { label: "contact", href: "#contact" },
@@ -27,14 +28,6 @@ export const ROLES = [
   "real-time data tools",
   "AI agents & custom skills",
   "side projects that ship",
-] as const;
-
-export const FOCUS_CHIPS = [
-  "AI agents",
-  "Custom skills",
-  "Workflow automation",
-  "React 19",
-  "Type-safe APIs",
 ] as const;
 
 export const EXPERIENCE = [

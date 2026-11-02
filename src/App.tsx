@@ -22,9 +22,9 @@ export default function App() {
       <main id="top">
         <Hero />
         <About />
+        <Skills />
         <Work />
         <Experience />
-        <Skills />
         <Services />
         <Contact />
       </main>

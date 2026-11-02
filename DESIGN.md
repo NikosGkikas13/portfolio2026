@@ -272,7 +272,7 @@ Quiet and solid; the primary inverts the page.
 Sticky 3.5rem glass bar with a bottom hairline. Monogram badge (inverted, 7px radius) plus name on the left; fg-2 text links in 6px hover boxes that fill with ground 2; theme icon button; small primary "contact" button. Links hide under 640px.
 
 ### Hero At-a-Glance Card
-A 16px surface card (1.5rem padding, hairline border, inset top highlight, soft lift) set straight beside the greeting; it fades up on load and has no hover motion. An 88px circular avatar sits at the top, ringed by a 4px surface gap and a 1px hairline; below it a small `dl`: fg-3 0.75rem terms, fg 0.9375rem/500 values ("Currently", "Shipped", "Based in", "Into"). This is the only photo on the page; About is text only.
+A 16px surface card (1.5rem padding, hairline border, inset top highlight, soft lift) set straight beside the greeting; it fades up on load and has no hover motion. An 88px circular avatar sits at the top, ringed by a 4px surface gap and a 1px hairline; below it a small `dl`: fg-3 0.75rem terms, fg 0.9375rem/500 values ("Currently", "Shipped" (each product name links to its public GitHub repo), "Based in"). This is the only photo on the page; About is text only.
 
 ### Work Snippets (signature)
 Projects are demonstrated with small working HTML panels, never screenshots, each carrying an "Illustrative data" note in the bottom-right corner. Each panel sits in a Spotlight wrapper (see Motion).

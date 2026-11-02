@@ -46,16 +46,18 @@ export function Hero() {
           <div>
             <dt>Shipped</dt>
             <dd>
-              <a href="#work">Nitpilot · Odyhook</a>
+              <a href="https://github.com/NikosGkikas13/nitpilot" target="_blank" rel="noreferrer">
+                Nitpilot
+              </a>
+              {" · "}
+              <a href="https://github.com/NikosGkikas13/odyhook" target="_blank" rel="noreferrer">
+                Odyhook
+              </a>
             </dd>
           </div>
           <div>
             <dt>Based in</dt>
             <dd>Marathon, Greece · GMT+2</dd>
-          </div>
-          <div>
-            <dt>Into</dt>
-            <dd>AI agents, real-time UIs</dd>
           </div>
         </dl>
       </aside>

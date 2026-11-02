@@ -37,7 +37,7 @@ export function Skills() {
         <div className="stack-group">
           <h3 className="label">Education</h3>
           <p className="edu">
-            <strong>B.Eng. Informatics Engineering</strong> · Bachelor's degree — Greece
+            <strong>B.Eng. Computer Science</strong> · Bachelor's degree — Greece
           </p>
         </div>
       </div>

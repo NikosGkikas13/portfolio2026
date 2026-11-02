@@ -1,5 +1,3 @@
-import { FOCUS_CHIPS } from "../data/content";
-
 export function About() {
   return (
     <section id="about" className="split">
@@ -14,7 +12,7 @@ export function About() {
         </p>
         <p>
           I'm based in Marathon, Greece, with a Bachelor's in{" "}
-          <strong>Informatics Engineering</strong>. Six years writing web
+          <strong>Computer Science</strong>. Six years writing web
           software professionally — now at <strong>JPMorganChase</strong>, where
           I build trading, pricing and risk interfaces in React and TypeScript.
         </p>
@@ -29,10 +27,6 @@ export function About() {
           developer productivity — with hands-on experience building and
           integrating AI agents, reusable skills, and intelligent tooling into
           modern software platforms.
-        </p>
-        <p className="focus">
-          <span className="focus-label">Focused on</span>
-          {FOCUS_CHIPS.join(" · ")}
         </p>
       </div>
     </section>
