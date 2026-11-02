@@ -14,8 +14,8 @@
   --border-strong: #d2d4da;
   --highlight: rgb(255 255 255 / 0.9);
 
-  --accent: #4f5bd5;
-  --link: #4651c4;
+  --accent: #7b4fd8; /* lightning violet, from the bolt in the intro */
+  --link: #6a3cc8;
   --up: #12805c;
   --down: #c2373b;
   --live: #16a34a;
@@ -52,8 +52,8 @@
   --border-strong: #2b2e33;
   --highlight: rgb(255 255 255 / 0.05);
 
-  --accent: #7c85ff;
-  --link: #9aa1ff;
+  --accent: #b99cff;
+  --link: #c9b3ff;
   --up: #4cc38a;
   --down: #f2777a;
   --live: #4cc38a;
@@ -95,6 +95,7 @@ body {
 
 body {
   min-height: 100vh;
+  overflow-x: clip; /* the full-width sky behind main is 100vw, which counts the scrollbar */
 }
 
 ::selection {
@@ -163,11 +164,11 @@ button {
   transition: transform var(--dur) var(--ease-out);
 }
 
-/* Theme toggle crossfades the whole page (see useTheme) */
+/* The new theme sweeps out from the toggle as a growing circle (clip-path set in useTheme) */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 250ms;
-  animation-timing-function: var(--ease-out);
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -455,6 +456,14 @@ button {
 .icon-btn .icon {
   width: 1rem;
   height: 1rem;
+  animation: icon-turn 300ms var(--ease-out); /* sun and moon remount on each switch, so this replays */
+}
+
+@keyframes icon-turn {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
 }
 
 /* ============================================================
@@ -471,6 +480,75 @@ main {
 
 main > section + section {
   margin-top: var(--section-gap);
+}
+
+/* Sky behind the page: day under the clouds, a starry night in dark mode. Decoration only. */
+main::before,
+main::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 35svh calc(50% - 50vw) 0; /* starts below the storm ceiling the hero rises under */
+  pointer-events: none;
+}
+
+/* Day: a lavender haze under the hero, warm light near the bottom, faint clouds from the intro at the edges */
+:root:not(.dark) main::before {
+  background:
+    linear-gradient(transparent, rgb(214 200 238 / 0.32) 16rem, transparent 56rem),
+    linear-gradient(to top, rgb(246 226 196 / 0.4), transparent 44rem);
+}
+
+:root:not(.dark) main::after {
+  background:
+    url(/hero/cloud-mid-1280.webp) right -20rem top 34% / 58rem auto no-repeat,
+    url(/hero/cloud-mid-1280.webp) left -24rem top 72% / 64rem auto no-repeat;
+  /* Soft ovals over each cloud (same box, art is 1280×723) so no edge of the image shows */
+  -webkit-mask:
+    radial-gradient(closest-side, #000 35%, transparent) right -20rem top 34% / 58rem 32.8rem no-repeat,
+    radial-gradient(closest-side, #000 35%, transparent) left -24rem top 72% / 64rem 36.2rem no-repeat;
+  mask:
+    radial-gradient(closest-side, #000 35%, transparent) right -20rem top 34% / 58rem 32.8rem no-repeat,
+    radial-gradient(closest-side, #000 35%, transparent) left -24rem top 72% / 64rem 36.2rem no-repeat;
+  opacity: 0.16;
+}
+
+/* Night: still stars on tiles of different sizes so no grid shows, plus a few that twinkle */
+.dark main::before {
+  --star: rgb(232 226 255 / 0.5);
+  --star-dim: rgb(232 226 255 / 0.28);
+  background:
+    radial-gradient(circle at 12% 18%, var(--star) 0 1px, transparent 1.6px) 0 0 / 19rem 23rem,
+    radial-gradient(circle at 67% 54%, var(--star-dim) 0 0.8px, transparent 1.4px) 0 0 / 19rem 23rem,
+    radial-gradient(circle at 38% 81%, var(--star-dim) 0 0.8px, transparent 1.4px) 0 0 / 19rem 23rem,
+    radial-gradient(circle at 81% 12%, var(--star) 0 1px, transparent 1.6px) 0 0 / 29rem 31rem,
+    radial-gradient(circle at 24% 63%, var(--star-dim) 0 0.8px, transparent 1.4px) 0 0 / 29rem 31rem,
+    radial-gradient(circle at 55% 37%, var(--star) 0 1px, transparent 1.6px) 0 0 / 43rem 37rem,
+    radial-gradient(circle at 9% 88%, var(--star-dim) 0 0.8px, transparent 1.4px) 0 0 / 43rem 37rem,
+    radial-gradient(ellipse 70% 32rem at 70% 0, rgb(150 110 240 / 0.08), transparent);
+  -webkit-mask-image: linear-gradient(transparent, #000 20rem);
+  mask-image: linear-gradient(transparent, #000 20rem);
+}
+
+.dark main::after {
+  background:
+    radial-gradient(circle at 30% 40%, rgb(235 222 255 / 0.9) 0 1.2px, rgb(190 150 255 / 0.25) 2px, transparent 4px) 0 0 / 53rem 47rem,
+    radial-gradient(circle at 78% 76%, rgb(235 222 255 / 0.9) 0 1.2px, rgb(190 150 255 / 0.25) 2px, transparent 4px) 0 0 / 61rem 59rem;
+  -webkit-mask-image: linear-gradient(transparent, #000 20rem);
+  mask-image: linear-gradient(transparent, #000 20rem);
+  animation: twinkle 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dark main::after {
+    animation: none;
+  }
 }
 
 .section-title {

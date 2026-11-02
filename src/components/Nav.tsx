@@ -4,7 +4,7 @@ import { Moon, Sun } from "./Icons";
 
 type NavProps = {
   theme: Theme;
-  onToggleTheme: () => void;
+  onToggleTheme: (from: Element) => void;
 };
 
 export function Nav({ theme, onToggleTheme }: NavProps) {
@@ -27,7 +27,7 @@ export function Nav({ theme, onToggleTheme }: NavProps) {
         <button
           className="icon-btn"
           type="button"
-          onClick={onToggleTheme}
+          onClick={(e) => onToggleTheme(e.currentTarget)}
           aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
         >
           {theme === "dark" ? <Moon /> : <Sun />}

@@ -21,13 +21,30 @@ export function useTheme() {
     window.localStorage.setItem(THEME_KEY, theme);
   }, [theme]);
 
-  const toggle = () => {
+  // `from` is the toggle button: the new theme grows out of it as a circle.
+  const toggle = (from: Element) => {
     const flip = () => flushSync(() => setTheme((t) => (t === "dark" ? "light" : "dark")));
     if (!document.startViewTransition || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       flip();
       return;
     }
-    document.startViewTransition(flip);
+    const r = from.getBoundingClientRect();
+    const x = r.left + r.width / 2;
+    const y = r.top + r.height / 2;
+    const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    const root = document.documentElement;
+    document.startViewTransition(flip).ready.then(
+      () =>
+        root.animate(
+          { clipPath: [`circle(0 at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
+          {
+            duration: 400,
+            easing: getComputedStyle(root).getPropertyValue("--ease-out").trim(),
+            pseudoElement: "::view-transition-new(root)",
+          },
+        ),
+      () => {}, // transition skipped: the theme still flipped
+    );
   };
 
   return [theme, toggle] as const;
