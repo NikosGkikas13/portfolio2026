@@ -57,7 +57,7 @@ export function Hero() {
           </div>
           <div>
             <dt>Based in</dt>
-            <dd>Marathon, Greece · GMT+2</dd>
+            <dd>Athens, Greece · GMT+2</dd>
           </div>
         </dl>
       </aside>

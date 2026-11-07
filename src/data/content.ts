@@ -80,13 +80,11 @@ export const EXPERIENCE = [
 export const SKILLS = [
   { name: "TypeScript", level: "primary" },
   { name: "React", level: "primary" },
-  { name: "Next.js", level: "primary" },
-  { name: "Node · Hono", level: "primary" },
-  { name: "Postgres · Prisma", level: "primary" },
+  { name: "JavaScript", level: "primary" },
+  { name: "HTML · CSS", level: "primary" },
+  { name: "Redux · Context API", level: "primary" },
   { name: "WebSockets", level: "primary" },
   { name: "AI agents · Claude Code", level: "primary" },
-  { name: "Redux · Context", level: "familiar" },
-  { name: "HTML · CSS", level: "familiar" },
   { name: "PHP", level: "familiar" },
   { name: "WordPress", level: "familiar" },
 ] as const;

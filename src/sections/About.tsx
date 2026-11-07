@@ -11,7 +11,7 @@ export function About() {
           data-driven applications.
         </p>
         <p>
-          I'm based in Marathon, Greece, with a Bachelor's in{" "}
+          I'm based in Athens, Greece, with a Bachelor's in{" "}
           <strong>Computer Science</strong>. Six years writing web
           software professionally — now at <strong>JPMorganChase</strong>, where
           I build trading, pricing and risk interfaces in React and TypeScript.

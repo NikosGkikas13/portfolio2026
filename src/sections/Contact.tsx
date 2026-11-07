@@ -70,7 +70,7 @@ export function Contact() {
             </div>
             <div>
               <dt>Location</dt>
-              <dd>Marathon, Greece · GMT+2</dd>
+              <dd>Athens, Greece · GMT+2</dd>
             </div>
             <div>
               <dt>Elsewhere</dt>
